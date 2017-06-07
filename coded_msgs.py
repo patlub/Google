@@ -1,21 +1,34 @@
 def answer(l, t):
     """Decrypts messages l using numerical key t
 
-    :param l:
-    :param t:
-    :return:
+    Arguments:
+        l: A list of positive integers holding the encrypted message
+        t: An integer representing the decryption key
+        
+    Returns:
+        A list of the start and end index of the message sequence
+        
+    Raises:
+        TypeError:
+            l is not type list or t is n ot int
     """
     if not isinstance(l, list) or not isinstance(t, int):
         raise TypeError('l and t must be list and int respectively')
 
-    elif not (all(isinstance(item, int) and item > 0 for item in l)):
-        return 'All list items should be positive integers'
+    elif not (all(isinstance(item, int) and 100 > item > 0 for item in l)):
+        return 'All list items should be positive integers between 0 and 100'
 
-    elif not t > 0:
-        return 'key should be a positive integer'
+    elif len(l) > 100:
+        return 'Broadcast more than 100 elements'
+
+    elif not 250 > t > 0:
+        return 'key should be a positive integer between 0 and 250'
 
     else:
-
+        # Loop through the sublists of l while
+        # summing each of them and return indices
+        # of list whose sum equals to t
+        # Otherwise return [-1, -1]
         for i in range(len(l)):
             n = i + 2
             while n <= len(l):
@@ -27,3 +40,4 @@ def answer(l, t):
 
 # a = [4, 3, 10, 2, 8]
 # print(answer(a, 12))
+
