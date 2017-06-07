@@ -58,6 +58,16 @@ class CodedMsgsTestCase(unittest.TestCase):
         my_list = [i for i in range(1, 11)]
         self.assertEqual(answer(my_list, 21), [0, 5])
 
+    def test_list5_with_available_sublist(self):
+        """Should return [2, 3] when passed [4, 3, 10, 2, 8] and 12"""
+        my_list = [1, 2, 3]
+        self.assertEqual(answer(my_list, 6), [0, 2])
+
+    def test_list6_with_available_sublist(self):
+        """Should return [2, 3] when passed [4, 3, 10, 2, 8] and 12"""
+        my_list = [10, 2, 3]
+        self.assertEqual(answer(my_list, 10), [0, 0])
+
     def test_list_with_no_match(self):
         """Should return [-1, -1] when passed [1, 2, 3, 4]"""
         my_list = [1, 2, 3, 4]
