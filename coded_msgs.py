@@ -1,5 +1,6 @@
 def answer(l, t):
-    """Decrypts messages l using numerical key t
+    """
+    Decrypts messages l using numerical key t
 
     Arguments:
         l: A list of positive integers holding the encrypted message
@@ -15,7 +16,7 @@ def answer(l, t):
     if not isinstance(l, list) or not isinstance(t, int):
         raise TypeError('l and t must be list and int respectively')
 
-    elif not (all(isinstance(item, int) and 101 > item > 0 for item in l)):
+    elif not (all(isinstance(item, int) and 100 >= item > 0 for item in l)):
         return 'All list items should be positive integers between 0 and 100'
 
     elif not l:
@@ -42,6 +43,3 @@ def answer(l, t):
                     return [i, n - 1]
                 n += 1
         return [-1, -1]
-
-
-my_list = [5, 5, 10, 2, 8]
