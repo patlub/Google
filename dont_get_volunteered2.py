@@ -21,30 +21,27 @@ def answer(src, dest):
     deltas = [(-2, -1), (-2, 1), (2, -1), (2, 1),
               (-1, -2), (-1, 2), (1, -2), (1, 2)]
 
-    moves = [(i[0] + src[0], i[1] + src[1]) for i in deltas]
-    if dest in moves:
-        print(moves)
+    first_nodes = [(i[0] + src[0], i[1] + src[1]) for i in deltas]
+    second_nodes = []
+
+    print(first_nodes)
+    if dest in first_nodes:
         return 1
 
-    s_moves = []
-    for move in moves:
-        s_moves = [(i[0] + move[0], i[1] + move[1]) for i in deltas]
-        if dest in s_moves:
-            print(s_moves)
+    for node in first_nodes:
+        sub_nodes = [(i[0] + node[0], i[1] + node[1]) for i in deltas]
+        print(sub_nodes)
+        if dest in sub_nodes:
             return 2
+        else:
+            for sub_node in sub_nodes:
+                second_nodes.append(sub_node)
 
-    t_moves = []
-    for move in s_moves:
-        t_moves = [(i[0] + move[0], i[1] + move[1]) for i in deltas]
-        if dest in t_moves:
-            print(t_moves)
+    for node in second_nodes:
+        sub_nodes = [(i[0] + node[0], i[1] + node[1]) for i in deltas]
+        print(sub_nodes)
+        if dest in sub_nodes:
             return 3
+    return 4
 
-    for move in t_moves:
-        f_moves = [(i[0] + move[0], i[1] + move[1]) for i in deltas]
-        if dest in f_moves:
-            print(f_moves)
-            return 4
-
-
-print(answer((3, 2), (4, 4)))
+print(answer((5, 3), (0, 7)))
