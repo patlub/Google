@@ -16,7 +16,19 @@ numbered like the example chessboard below:
 
 
 def answer(src, dest):
-    """Minimim knight moves for Chess"""
+    """
+    Minimum knight moves for Chess
+    
+    Arguments:
+        src:  Initial knight position
+        dest: Final knight position
+        
+    Raises:
+        TypeError: For non-int args
+    
+    Returns:
+        int: Number of knight moves
+    """
 
     if not isinstance(src, int) or not isinstance(dest, int):
         raise TypeError('Both source and destination should be ints')
@@ -30,49 +42,41 @@ def answer(src, dest):
     if src == dest:
         return 0
 
+    # Convert args to points
     src = (src % 8, src // 8)
     dest = (dest % 8, dest // 8)
 
+    # All Possible moves
     deltas = [(-2, -1), (-2, 1), (2, -1), (2, 1),
               (-1, -2), (-1, 2), (1, -2), (1, 2)]
 
-    first_nodes = [(i[0] + src[0], i[1] + src[1]) for i in deltas]
-    second_nodes = []
-    third_nodes = []
-    fourth_nodes = []
+    # All possible First moves
+    moves = [(i[0] + src[0], i[1] + src[1]) for i in deltas]
 
-    if dest in first_nodes:
+    if dest in moves:
         return 1
 
-    for node in first_nodes:
-        sub_nodes = [(i[0] + node[0], i[1] + node[1]) for i in deltas]
-        if dest in sub_nodes:
-            return 2
-        else:
-            for sub_node in sub_nodes:
-                second_nodes.append(sub_node)
+    # Make all possible moves until the
+    # destination is reached, otherwise
+    # return 6, the maximium possible moves
+    count = 1
+    while count < 6:
+        next_moves = []
+        for move in moves:
+            sub_moves = [(i[0] + move[0], i[1] + move[1]) for i in deltas]
+            if dest in sub_moves:
+                if count == 1:
+                    return 2
+                if count == 2:
+                    return 3
+                if count == 3:
+                    return 4
+                if count == 4:
+                    return 5
+            else:
+                for sub_move in sub_moves:
+                    next_moves.append(sub_move)
 
-    for node in second_nodes:
-        sub_nodes = [(i[0] + node[0], i[1] + node[1]) for i in deltas]
-        if dest in sub_nodes:
-            return 3
-        else:
-            for sub_node in sub_nodes:
-                third_nodes.append(sub_node)
-
-    for node in third_nodes:
-        sub_nodes = [(i[0] + node[0], i[1] + node[1]) for i in deltas]
-        if dest in sub_nodes:
-            return 4
-        else:
-            for sub_node in sub_nodes:
-                fourth_nodes.append(sub_node)
-
-    for node in fourth_nodes:
-        sub_nodes = [(i[0] + node[0], i[1] + node[1]) for i in deltas]
-        if dest in sub_nodes:
-            return 5
+        moves = next_moves
+        count += 1
     return 6
-
-
-print(answer(0, 1))
