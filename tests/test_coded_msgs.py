@@ -14,17 +14,20 @@ class CodedMsgsTestCase(unittest.TestCase):
     def test_non_int_list_items(self):
         """Should return error message"""
         self.assertEqual(answer(['a', 'b'], 12),
-                         'All list items should be positive integers between 0 and 100')
+                         'All list items should be positive '
+                         'integers between 0 and 100')
 
     def test_negative_list_items(self):
         """Should return error message"""
         self.assertEqual(answer([-2, -6], 12),
-                         'All list items should be positive integers between 0 and 100')
+                         'All list items should be positive'
+                         ' integers between 0 and 100')
 
     def test_list_items_outside_range(self):
         """Should return error message"""
         self.assertEqual(answer([2, 200], 12),
-                         'All list items should be positive integers between 0 and 100')
+                         'All list items should be positive '
+                         'integers between 0 and 100')
 
     def test_broadcast_more_than_100_elements(self):
         """Should return error message"""
@@ -36,12 +39,14 @@ class CodedMsgsTestCase(unittest.TestCase):
     def test_negative_key(self):
         """Should return error message"""
         self.assertEqual(answer([2, 6], -12),
-                         'key should be a positive integer between 0 and 250')
+                         'key should be a positive integer '
+                         'between 0 and 250')
 
     def test_key_out_of_range(self):
         """Should return error message"""
         self.assertEqual(answer([2, 6], 300),
-                         'key should be a positive integer between 0 and 250')
+                         'key should be a positive integer '
+                         'between 0 and 250')
 
     def test_list1_with_available_sublist(self):
         """Should return [4, 3, 5] when passed [4, 3, 5, 7, 8] and 12"""
